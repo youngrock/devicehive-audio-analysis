@@ -27,8 +27,16 @@ __all__ = ['WavProcessor', 'format_predictions']
 cwd = os.path.dirname(os.path.realpath(__file__))
 
 
-def format_predictions(predictions):
-    return ', '.join('{0}: {1:.2f}'.format(*p) for p in predictions)
+def format_predictions(predictions,num_show=5):
+    #return ', '.join('{0}: {1:.2f}'.format(*p) for p in predictions)
+    output = ''
+    for i,p in enumerate(predictions):
+        if i >= num_show:
+            break
+        output += '{0}: {1:.2f},'.format(*p)
+    output=output.strip(',')
+    return output
+
 
 
 class WavProcessor(object):
